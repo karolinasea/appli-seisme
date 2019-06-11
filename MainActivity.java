@@ -15,6 +15,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import static android.os.SystemClock.sleep;
+/*changes:
+ajouter de 2 attributs a la class seisme ainsi que les get et set qui vont avec
+ajout dan sle parsing du JSON dans ActivityList pour recuperer longitude latitude
+ajout MapsSeisme et son xml
+ajout du mot "magnitude:" a la ligne 69 de MyAdapter
+ajout du fichier google map api
+*/
+
 
 /*
 accueil: ajouter icones
