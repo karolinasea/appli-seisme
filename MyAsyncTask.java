@@ -49,6 +49,6 @@ public class MyAsyncTask extends AsyncTask<Object, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        ActivityList.data = this.data;
+        MainActivity.data = this.data;
     }
 }

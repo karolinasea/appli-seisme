@@ -1,59 +1,64 @@
 package com.example.projet_seisme;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import static android.os.SystemClock.sleep;
 
 /*
 accueil: ajouter icones
 gérer conexion connnectivity manager
-splashscreen
+splashscreen - fait
 savescreen
 optionnel : barre de chargement
 google map
 tester etat de la connexion (wifi ou 3 G
 Menu des preferences
  */
+
+@TargetApi(21)
 public class MainActivity extends AppCompatActivity {
     Button earthquake, get_data;
-    public static TextView data;
+    public static String data;
     Intent intent;
     public static final String MESSAGE_FROM_Main = "";
-    public static final String MESSAGE_FROM_B = "message_from_B";
     public static final int REQUEST_CODE_B = 2;
-
+    private static final String DEBUG_TAG = "NetworkStatusExample";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        earthquake = findViewById(R.id.earthquake);
-        get_data = findViewById(R.id.get_data);
-        data = findViewById(R.id.fetcheddata);
+            refreshRSSFlow();
+            sleep(3000);
+            //setContentView(R.layout.activity_main);
+            //earthquake = findViewById(R.id.earthquake);
+            intent = new Intent(MainActivity.this, ActivityList.class);
+            intent.putExtra(MESSAGE_FROM_Main, data);
+            startActivityForResult(intent, REQUEST_CODE_B);
+    }
 
-        get_data.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                MyAsyncTask process = new MyAsyncTask();
-                process.execute();
-            }
-        });
-        earthquake.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                intent = new Intent(MainActivity.this, ActivityList.class);
-                intent.putExtra(MESSAGE_FROM_Main, data.getText());
-                startActivityForResult(intent, REQUEST_CODE_B);
-            }
-        });
+
+    public static void refreshRSSFlow(){
+        MyAsyncTask process = new MyAsyncTask();
+        process.execute();
     }
     @Override
     protected void onRestart() {
+        Intent intent = new Intent(MainActivity.this, SplashScreen.class);
+        startActivity(intent);
         super.onRestart();
     }
 

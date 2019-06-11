@@ -2,23 +2,18 @@ package com.example.projet_seisme;
 
 import java.util.Date;
 
-public class
-Seisme {
+public class Seisme {
     private String title;
     private String place;
-    private Double time;
+    private Date time;
     private double magnitude;
-    private double coordinate1;
-    private double coordinate2;
 
 
-    public Seisme(String t, String p, Double d, double m, double coord1, double coord2){
+    public Seisme(String t, String p, int d, double m){
         title = t;
         place = p;
-        time = d;
+        time = new Date(d);
         magnitude = m;
-        coordinate1 = coord1;
-        coordinate2 = coord2;
     }
 
     @Override
@@ -31,13 +26,10 @@ Seisme {
     public String getPlace(){
         return place;
     }
-    public Double getTime() { return time; }
+    public Date getTime() { return time; }
     public double getMagnitude(){
         return magnitude;
     }
-
-    public Double getCoordinate1() { return coordinate1; }
-    public Double getCoordinate2() { return coordinate2; }
 
     public void setTitle(String s){
         title = s;
@@ -45,13 +37,9 @@ Seisme {
     public void setPlace(String s){
         place = s;
     }
-    public void setTime(Double s){ time = s; }
+    public void setTime(int s){ time = new Date(s); }
     public void setMagnitude(double s){
         magnitude = s;
     }
 
-    public void setCoordinate1(Double c){ coordinate1 = c; }
-    public void setCoordinate2(Double c){ coordinate2 = c; }
-
 }
-
