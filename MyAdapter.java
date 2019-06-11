@@ -66,7 +66,7 @@ public class MyAdapter extends BaseAdapter {
         viewHolder.title.setText(listItem.get(position).get("titre"));
         viewHolder.place.setText(listItem.get(position).get("place"));
         viewHolder.time.setText(listItem.get(position).get("time"));
-        viewHolder.magnitude.setText(listItem.get(position).get("magnitude"));
+        viewHolder.magnitude.setText("magnitude : " + listItem.get(position).get("magnitude"));
         viewHolder.reaction.setImageResource(Integer.parseInt(listItem.get(position).get("reaction")));
         //on retourne l'article créé
         return articleMisEnPage;
